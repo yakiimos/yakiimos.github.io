@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="src/icon.jpeg">
+<link rel="stylesheet" type="text/css" href="css/setting.css">
+<title>烤番薯的主页</title>
+<meta    HTTP-EQUIV="Pragma" CONTENT="no-cache">
+
+<meta    HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+
+<meta   HTTP-EQUIV="Expires" CONTENT="0">
+</head>
+
+<body id="homepage" style="overflow:-Scroll;overflow-x:hidden;overflow-y:hidden">
+<div>
+<header id="hphead"  style="cursor:default">烤番薯的主页</header>
+<div>
+<table cellpadding="50%" id="hp_choice">
+<tr>
+<td><a href="Anime.html">Anime</a></td>
+<td  style="cursor:default">Comics</td>
+<td  style="cursor:default">Game</td>
+<td  style="cursor:default">Blog</td>
+</tr>
+</table></div>
+</div>
+
+<div class="dropdown">
+<span class="dropbtn">留言面板</span>
+<div class="dropdown-content">
+<form action="note.html" target="_blank" method="post">留言<br>
+<textarea rows="2" cols="20" name="message" style="font-size:20px"></textarea>
+<input type="submit" value="提交">
+<br>
+留言是否公开<br>
+<input type="radio" name="open" value="是" checked>
+是
+<input type="radio" value="否" name="open">
+否<br>
+<button type="button" onclick="alert('已留言0条')">查看已留言数</button>
+</form>
+</div>
+</div>
+</body>
+</html>
