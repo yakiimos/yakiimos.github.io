@@ -1,29 +1,4 @@
 /* CSS Document */
-.left-fence {
-  align: "left";
-  width: 20%;
-  margin-left: 10%;
-  text-align: center;
-  border-radius: 10px;
-}
-#header {
-  background-color: #6ba697;
-  color: #C5E99B;
-  line-height: 250%;
-  font-family: title;
-  font-size: 200%;
-  float: left;
-  min-width: 100%;
-  cursor: default;
-}
-nav {
-  line-height: 100%;
-  background-color: #C5E99B;
-  float: left;
-  color: #737375;
-  min-width: 100%;
-  padding: 10% 0
-}
 @font-face {
   font-family: title;
   src: url("/css/font/Galyon-bold.ttf");
@@ -32,48 +7,53 @@ nav {
   font-family: tsing;
   src: url("/css/font/qingke.TTF");
 }
-.linkone:link {
-  color: black;
-  font-family: "Microsoft YaHei UI", "微软雅黑";
-  line-height: 300%;
-}
-.linkone:hover {
-  color: black;
-  font-family: "Microsoft YaHei UI", "微软雅黑";
-  line-height: 300%;
-  background-color: lightgray;
-}
 a {
-  text-decoration: none;
-  color: inherit;
+text-decoration: none;
+color: inherit;
 }
-.heading {
-  padding: 5%;
-  font-family: "Microsoft YaHei UI", "微软雅黑", "宋体", "Arial";
+body {
+margin: 0px;
+padding: 0px;
+}
+.headmenu {
+display: block;
+background-color: #6ba697;
+width: 15%;
+text-align: center;
+float: left;
+font-family: title;
+font-size: 200%;
+color: #C5E99B;
+padding-top: 1%;
+padding-bottom: 1%;
+}
+nav {
+  background-color: #C5E99B;
+  display: block;
   text-align: center;
+  padding-bottom: 20px;
+  align: center;
+  margin-left: 5%;
+  margin-right: 5%;
+  max-width: 300px;
 }
-li {
-  list-style: none;
+.animeblk {
+border-color: #000000;
+display: block;
+padding-top: 10%;
 }
-#Problone {
-  margin: 0;
-  padding: 0;
+.animetbl {
+table-layout:fixed;
+text-align: center;
+width: 90%;
 }
-.content {
-  margin-left: 35%;
+#left {
+width: 30%;
+float: left;
 }
-#homepage {
-  background-image: url("../src/hmpage.png");
-  background-size: cover;
-}
-#hphead {
-  color: #C5E99B;
-  font-size: 500%;
-  font-family: tsing;
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+#right {
+width: 70%;
+float: left;
 }
 /*-----下拉式菜单↓-----*/
 .dropbtn {
@@ -85,7 +65,6 @@ li {
   cursor: pointer;
 
 }
-
 .dropdown-content {
   display: none;
   position: absolute;
@@ -111,11 +90,3 @@ li {
   background-color: #3e8e41;
 }
 /*-----下拉式菜单↑-----*/
-#hp_choice {
-position: absolute;
-top:50%;
-left: 50%;
-transform: translate(-50%, -50%);
-font-size: 300%;
-color: #C5E99B;
-}
