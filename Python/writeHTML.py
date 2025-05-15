@@ -1,8 +1,4 @@
 # 用于生成HTML页面的Python脚本
-__all__ = [
-    'generate_html',
-]
-
 import re
 
 def replace_template_content(html_content, dict):
@@ -27,6 +23,28 @@ def generate_html(html_content:str ,filling_dict:dict, html_dest:str=None):
         file.write(html_content)
 
     print("HTML页面已生成")
+
+def render_table(table_content):
+    thead = table_content[0]
+    tbody = table_content[1]
+    table = ""
+
+    # 创建表头
+    lines = '<thead class="table-light"><tr>'
+    for i in thead:
+        lines = ''.join([lines,'<th>',i,'</th>'])
+    table = ''.join([table,lines,"</tr></thead>"])
+
+    # 创建表体
+    lines = '<tbody>'
+    for i in tbody:
+        lines = ''.join([lines,'<tr>'])
+        for j in i:
+            lines = ''.join([lines,'<td>',j,'</td>'])
+        lines = ''.join([lines,'</tr>'])
+    table = ''.join([table,lines,'</tbody>'])
+
+    return table
 
 if __name__ == "__main__":
     import os
