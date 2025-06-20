@@ -11,6 +11,3 @@ wheels/
 
 # vscode
 *.code-workspace
-
-*.db
-web.txt

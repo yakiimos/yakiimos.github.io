@@ -13,15 +13,13 @@ def main():
     # create_database(SRC_PATH / "sites.db")
 
     # 处理数据并输出到数据库
-    sites = read_sites_file(SRC_PATH / "sites.md")
-    write_database(SRC_PATH / "sites.db", sites)
+    # sites = read_sites_file(SRC_PATH / "sites.md")
+    # write_database(SRC_PATH / "sites.db", sites)
 
-    # 读取数据库
-    # sites = fetch_data(SRC_PATH / "sites.db")
-    
-    # 渲染 HTML
-    # replacer = {'content': render_table(sites)}
-    # generate_html(SRC_PATH / "index.html", replacer, ROOT_PATH / "index.html")
+    # 读取数据库渲染 HTML
+    sites = fetch_data(SRC_PATH / "sites.db")
+    replacer = {'content': render_table(sites)}
+    generate_html(SRC_PATH / "index.html", replacer, ROOT_PATH / "index.html")
 
 
 if __name__ == "__main__":

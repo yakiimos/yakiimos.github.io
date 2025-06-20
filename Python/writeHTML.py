@@ -22,8 +22,8 @@ def render_table(sites):
             table += "</tr><tr>"
             i = 0
         url = site["url"]
-        name = site["name"] if "name" in site else "NoTitle"
-        description = site["description"] if "description" in site else "无描述"
+        name = site["name"]
+        description = site["description"]
         item = '<a href="{url}" target="_blank" title="{description}">{name}</a>'
         item = item.format(url=url, name=name, description=description)
         table += '<td class="cell-width">{item}</td>'.format(item=item)
