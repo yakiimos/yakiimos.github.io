@@ -1,31 +1,29 @@
-import os
+from pathlib import Path
 
-import writeHTML
+# 业务层：main 主要逻辑
+from writeHTML import * # 交互层：writeHTML 提供用户界面
+from writedb import * # 数据层：writedb 数据存取
+from uio import * # 处理层：io 将用户数据转换为格式化数据
 
-def md_table_to_json(md_table:str):
-    lines = md_table.strip().split("\n")
-    headers = [header.strip() for header in lines[0].split("|") if header.strip()]
-    rows = [
-        [cell.strip() for cell in row.split("|") if cell.strip()]
-        for row in lines[2:]  # Skip the header and separator lines
-    ]
-    # json_data = [dict(zip(headers, row)) for row in rows if row]
-    # json_file = json.dumps(json_data, indent=4, ensure_ascii=False)
-    return [headers,rows]
+def main():
+    ROOT_PATH = Path(__file__).parent.parent
+    SRC_PATH = ROOT_PATH / "srcs"
+
+    # 创建数据库
+    # create_database(SRC_PATH / "sites.db")
+
+    # 处理数据并输出到数据库
+    sites = read_sites_file(SRC_PATH / "sites.md")
+    write_database(SRC_PATH / "sites.db", sites)
+
+    # 读取数据库
+    # sites = fetch_data(SRC_PATH / "sites.db")
+    
+    # 渲染 HTML
+    # replacer = {'content': render_table(sites)}
+    # generate_html(SRC_PATH / "index.html", replacer, ROOT_PATH / "index.html")
 
 
 if __name__ == "__main__":
-    os.chdir(os.path.dirname(__file__))
-
-    with open("sites.md", "r", encoding="utf-8") as f:
-        md_table = f.read()
-    # 转换为JSON
-    result = md_table_to_json(md_table)
-
-    dict = {
-        'content' : writeHTML.render_table(result),
-    }
-
-    with open("./index.html", "r", encoding="utf-8") as f:
-        html_content = f.read()
-    writeHTML.generate_html(html_content,dict,"../Pages/index.html")
+    main()
+        
