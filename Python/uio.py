@@ -1,4 +1,3 @@
-
 def read_sites_file(file_path):
     with open(file_path, 'r', encoding='utf-8') as file:
         content = file.read()
@@ -22,4 +21,3 @@ def read_sites_file(file_path):
             raise ValueError(f"过长的字段出现在：\n{group}\n")
         sites.append(site)
     return sites
-

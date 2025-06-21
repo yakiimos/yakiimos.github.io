@@ -1,4 +1,5 @@
 import sqlite3
+import json
 
 def create_database(db_path):
     conn = sqlite3.connect(db_path)
@@ -6,7 +7,7 @@ def create_database(db_path):
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS sites (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            url TEXT NOT NULL,
+            url TEXT NOT NULL UNIQUE,
             name TEXT,
             description TEXT,
             tags TEXT,
@@ -33,7 +34,7 @@ def write_database(db_path, sites: list[dict]):
     for site in sites:
         cursor.execute(
             "INSERT INTO sites (url, name, description, tags) VALUES (?, ?, ?, ?)",
-            (site.get('url'), site.get('name'), site.get('description'), site.get('tags'))
+            (site.get('url'), site.get('name'), site.get('description'), json.dumps(site.get('tags')))
         )
     
     conn.commit()

@@ -5,6 +5,7 @@ from writeHTML import * # 交互层：writeHTML 提供用户界面
 from writedb import * # 数据层：writedb 数据存取
 from uio import * # 处理层：io 将用户数据转换为格式化数据
 
+
 def main():
     ROOT_PATH = Path(__file__).parent.parent
     SRC_PATH = ROOT_PATH / "srcs"
@@ -20,6 +21,7 @@ def main():
     sites = fetch_data(SRC_PATH / "sites.db")
     replacer = {'content': render_table(sites)}
     generate_html(SRC_PATH / "index.html", replacer, ROOT_PATH / "index.html")
+    
 
 
 if __name__ == "__main__":
