@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog', ({ data }) => !data.draft);
+posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+// 提取所有标签
+const allTags = [...new Set(posts.flatMap((p) => p.data.tags))].sort();
+---
+
+<BaseLayout title="博客 - My Blog" description="所有博客文章列表">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- 页头 -->
+    <header class="mb-10">
+      <h1 class="text-3xl font-bold text-gray-900 mb-2">博客</h1>
+      <p class="text-gray-500">共 {posts.length} 篇文章</p>
+    </header>
+
+    <!-- 标签过滤 -->
+    {allTags.length > 0 && (
+      <div class="flex flex-wrap gap-2 mb-8">
+        {allTags.map((tag) => (
+          <span class="bg-indigo-50 text-indigo-600 px-3 py-1 rounded-full text-sm font-medium cursor-pointer hover:bg-indigo-100 transition-colors">
+            #{tag}
+          </span>
+        ))}
+      </div>
+    )}
+
+    <!-- 文章列表 -->
+    <div class="space-y-6">
+      {posts.map((post) => (
+        <article class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-md hover:border-indigo-200 transition-all group">
+          <div class="flex items-start justify-between gap-4">
+            <div class="flex-1 min-w-0">
+              <div class="flex flex-wrap gap-1.5 mb-2">
+                {post.data.tags.map((tag: string) => (
+                  <span class="text-xs bg-indigo-50 text-indigo-600 px-2 py-0.5 rounded font-medium">
+                    #{tag}
+                  </span>
+                ))}
+              </div>
+              <h2 class="text-xl font-bold text-gray-900 group-hover:text-indigo-600 transition-colors mb-2">
+                <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+              </h2>
+              {post.data.description && (
+                <p class="text-gray-500 text-sm leading-relaxed line-clamp-2">
+                  {post.data.description}
+                </p>
+              )}
+            </div>
+            <time class="text-xs text-gray-400 whitespace-nowrap mt-1">
+              {post.data.pubDate.toLocaleDateString('zh-CN', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+              })}
+            </time>
+          </div>
+          <div class="mt-4">
+            <a
+              href={`/blog/${post.slug}`}
+              class="text-sm text-indigo-500 hover:text-indigo-700 font-medium"
+            >
+              阅读全文 →
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    {posts.length === 0 && (
+      <div class="text-center py-20 text-gray-400">
+        <p class="text-lg">还没有文章，快来写第一篇吧！</p>
+      </div>
+    )}
+  </div>
+</BaseLayout>

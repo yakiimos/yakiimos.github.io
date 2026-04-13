@@ -1,0 +1,71 @@
+---
+title: "Astro 博客搭建完全指南"
+description: "从零开始使用 Astro + Tailwind CSS 搭建高性能个人博客，包含 MDX 支持和静态导出。"
+pubDate: 2026-04-13
+tags: ["教程", "Astro", "Tailwind", "TypeScript"]
+---
+
+## 为什么选择 Astro？
+
+在 2026 年，Astro 已经成为内容驱动网站（博客、文档、营销站）的**事实标准**。它的核心优势：
+
+1. **零 JavaScript 默认**：只在需要的地方才发送 JS，性能极佳
+2. **孤岛架构（Islands）**：可以在静态页面中嵌入任意框架的交互组件
+3. **内容集合**：类型安全的 Markdown/MDX 文件管理
+4. **开箱即用的 SSG**：静态生成，可部署到任意 CDN
+
+## 项目结构
+
+```
+src/
+├── content/
+│   ├── config.ts      # 内容集合类型定义
+│   └── blog/          # 博客文章 (.mdx)
+├── layouts/
+│   ├── BaseLayout.astro   # 全局布局
+│   └── PostLayout.astro   # 文章布局
+├── pages/
+│   ├── index.astro        # 首页
+│   ├── blog/
+│   │   ├── index.astro    # 博客列表
+│   │   └── [...slug].astro # 文章页面
+│   └── nav.astro          # 网址导航
+└── data/
+    └── sites.json         # 网站导航数据
+```
+
+## 关键代码片段
+
+### 获取所有博客文章
+
+```typescript
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog', ({ data }) => {
+  return !data.draft;
+});
+
+// 按日期排序（最新在前）
+posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+```
+
+### MDX 文章渲染
+
+```astro
+---
+const { Content } = await post.render();
+---
+<Content />
+```
+
+就是这么简单！Astro 会自动处理 Markdown 到 HTML 的转换。
+
+## 部署
+
+Astro 可以部署到：
+
+- **Vercel**：`npx astro add vercel`
+- **Cloudflare Pages**：推送到 GitHub 自动部署
+- **GitHub Pages**：静态文件托管，完全免费
+
+希望这篇文章对你有帮助！

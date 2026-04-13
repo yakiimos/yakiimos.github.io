@@ -1,0 +1,4 @@
+.astro/
+.workbuddy/
+dist/
+node_modules/

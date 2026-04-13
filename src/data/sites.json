@@ -1,0 +1,912 @@
+[
+  {
+    "id": 1,
+    "title": "Stack Overflow",
+    "url": "https://stackoverflow.com",
+    "category": "编程学习",
+    "description": "全球最大程序员问答社区"
+  },
+  {
+    "id": 2,
+    "title": "LeetCode",
+    "url": "https://leetcode.com",
+    "category": "编程学习",
+    "description": "编程练习与算法题库"
+  },
+  {
+    "id": 3,
+    "title": "牛客网",
+    "url": "https://www.nowcoder.com",
+    "category": "编程学习",
+    "description": "编程练习与笔试面试"
+  },
+  {
+    "id": 4,
+    "title": "Codewars",
+    "url": "https://www.codewars.com",
+    "category": "编程学习",
+    "description": "编程练习挑战平台"
+  },
+  {
+    "id": 5,
+    "title": "洛谷",
+    "url": "https://www.luogu.com.cn",
+    "category": "编程学习",
+    "description": "算法竞赛练习平台"
+  },
+  {
+    "id": 6,
+    "title": "cppreference",
+    "url": "https://en.cppreference.com",
+    "category": "编程学习",
+    "description": "C++ 官方参考文档"
+  },
+  {
+    "id": 7,
+    "title": "LearnCpp",
+    "url": "https://www.learncpp.com",
+    "category": "编程学习",
+    "description": "C++ 系统学习教程"
+  },
+  {
+    "id": 8,
+    "title": "HTML Reference",
+    "url": "https://htmlreference.io",
+    "category": "编程学习",
+    "description": "HTML 标签参考文档"
+  },
+  {
+    "id": 9,
+    "title": "CSS Reference",
+    "url": "https://cssreference.io",
+    "category": "编程学习",
+    "description": "CSS 属性参考文档"
+  },
+  {
+    "id": 10,
+    "title": "JavaScript in 14 minutes",
+    "url": "https://jgthms.com/javascript-in-14-minutes/",
+    "category": "编程学习",
+    "description": "14 分钟快速学 JavaScript"
+  },
+  {
+    "id": 11,
+    "title": "Beautiful Soup 中文文档",
+    "url": "https://beautifulsoup.cn",
+    "category": "编程学习",
+    "description": "Python 网页解析库文档"
+  },
+  {
+    "id": 12,
+    "title": "CSS Bed",
+    "url": "https://www.cssbed.com",
+    "category": "编程工具",
+    "description": "CSS 主题样式库"
+  },
+  {
+    "id": 13,
+    "title": "Handsome CSS3 Lib",
+    "url": "https://www.handsome-css.com",
+    "category": "编程工具",
+    "description": "漂亮的 CSS3 动效库"
+  },
+  {
+    "id": 14,
+    "title": "CSS 汉堡菜单",
+    "url": "https://codepen.io/erikterwan/pen/EVzeRP",
+    "category": "CSS设计",
+    "description": "CSS 汉堡菜单效果"
+  },
+  {
+    "id": 15,
+    "title": "CSS 弹出效果",
+    "url": "https://codepen.io/imprakash/pen/GgNMXO",
+    "category": "CSS设计",
+    "description": "CSS 弹出动画效果"
+  },
+  {
+    "id": 16,
+    "title": "CSS 下拉选择",
+    "url": "https://codepen.io/imprakash/pen/VejpQP",
+    "category": "CSS设计",
+    "description": "CSS 下拉选择组件"
+  },
+  {
+    "id": 17,
+    "title": "CSS 图片轮播图",
+    "url": "https://codepen.io/AMKohn/pen/EKJHf",
+    "category": "CSS设计",
+    "description": "纯 CSS 图片轮播"
+  },
+  {
+    "id": 18,
+    "title": "CSS 悬停按钮",
+    "url": "https://codepen.io/kathykato/pen/rZRaNe",
+    "category": "CSS设计",
+    "description": "CSS 悬停按钮效果"
+  },
+  {
+    "id": 19,
+    "title": "Anytype",
+    "url": "https://anytype.io/en",
+    "category": "笔记工具",
+    "description": "本地优先的知识管理工具"
+  },
+  {
+    "id": 20,
+    "title": "我来 Wolai",
+    "url": "https://wolai.com",
+    "category": "笔记工具",
+    "description": "中文 Notion 替代品"
+  },
+  {
+    "id": 21,
+    "title": "语雀",
+    "url": "https://yuque.com",
+    "category": "笔记工具",
+    "description": "阿里巴巴出品知识库工具"
+  },
+  {
+    "id": 22,
+    "title": "Notion",
+    "url": "https://notion.com",
+    "category": "笔记工具",
+    "description": "全能笔记与协作工具"
+  },
+  {
+    "id": 23,
+    "title": "Obsidian",
+    "url": "https://obsidian.md",
+    "category": "笔记工具",
+    "description": "本地 Markdown 知识库"
+  },
+  {
+    "id": 24,
+    "title": "Simple.Savr",
+    "url": "https://www.ssavr.com",
+    "category": "文件传输",
+    "description": "局域网匿名文件传输，7天有效期"
+  },
+  {
+    "id": 25,
+    "title": "AirPortal",
+    "url": "https://airportal.cn",
+    "category": "文件传输",
+    "description": "不限速无广告文件传输，生成二维码"
+  },
+  {
+    "id": 26,
+    "title": "Snapdrop",
+    "url": "https://snapdrop.net",
+    "category": "文件传输",
+    "description": "局域网内点对点文件传输"
+  },
+  {
+    "id": 27,
+    "title": "皮皮直连",
+    "url": "https://www.ppzhilian.com",
+    "category": "文件传输",
+    "description": "点对点直连，支持文字和文件私密发送"
+  },
+  {
+    "id": 28,
+    "title": "奶牛快传",
+    "url": "https://cowtransfer.com",
+    "category": "文件传输",
+    "description": "上传下载速度快的文件传输服务"
+  },
+  {
+    "id": 29,
+    "title": "Send Anywhere",
+    "url": "https://send-anywhere.com",
+    "category": "文件传输",
+    "description": "六位数字接收文件，电脑端支持300GB"
+  },
+  {
+    "id": 30,
+    "title": "小鹿快传",
+    "url": "https://deershare.com/send",
+    "category": "文件传输",
+    "description": "点对点文件传输工具"
+  },
+  {
+    "id": 31,
+    "title": "文叔叔",
+    "url": "https://www.wenshushu.cn",
+    "category": "文件传输",
+    "description": "大文件永不限速传输"
+  },
+  {
+    "id": 32,
+    "title": "MuseTransfer",
+    "url": "https://musetransfer.com",
+    "category": "文件传输",
+    "description": "高品质不限速文件传输"
+  },
+  {
+    "id": 33,
+    "title": "WordArt",
+    "url": "https://wordart.com",
+    "category": "图片工具",
+    "description": "生成漂亮词云图的在线工具"
+  },
+  {
+    "id": 34,
+    "title": "图悦",
+    "url": "http://www.picdata.cn/picdata/index.php",
+    "category": "图片工具",
+    "description": "词频统计与词云生成"
+  },
+  {
+    "id": 35,
+    "title": "微词云",
+    "url": "https://www.weiciyun.com",
+    "category": "图片工具",
+    "description": "中文词云图生成工具"
+  },
+  {
+    "id": 36,
+    "title": "中国国家数字图书馆",
+    "url": "https://www.nlc.cn",
+    "category": "学习资源",
+    "description": "国家图书馆在线数字资源"
+  },
+  {
+    "id": 37,
+    "title": "Z-Library",
+    "url": "https://zh.singlelogin.org",
+    "category": "学习资源",
+    "description": "世界最大在线图书馆之一，支持中文搜索"
+  },
+  {
+    "id": 38,
+    "title": "Library Genesis",
+    "url": "https://libgen.li",
+    "category": "学习资源",
+    "description": "免费下载300万+电子书"
+  },
+  {
+    "id": 39,
+    "title": "OpenStax",
+    "url": "https://openstax.org",
+    "category": "学习资源",
+    "description": "免费分享国外各种教材的在线平台"
+  },
+  {
+    "id": 40,
+    "title": "PDF Drive",
+    "url": "https://www.pdfdrive.com",
+    "category": "学习资源",
+    "description": "PDF 电子书免费下载"
+  },
+  {
+    "id": 41,
+    "title": "FreeTechBooks",
+    "url": "https://www.freetechbooks.com",
+    "category": "学习资源",
+    "description": "计算机科学专业书籍免费下载"
+  },
+  {
+    "id": 42,
+    "title": "大学自学网",
+    "url": "https://v.dxsbb.com",
+    "category": "学习资源",
+    "description": "免费在线学习视频，可免费下载"
+  },
+  {
+    "id": 43,
+    "title": "中国大学MOOC",
+    "url": "https://www.icourse163.org",
+    "category": "学习资源",
+    "description": "985/211名校在线课程平台"
+  },
+  {
+    "id": 44,
+    "title": "学堂在线",
+    "url": "https://www.xuetangx.com",
+    "category": "学习资源",
+    "description": "清华大学联合建立的视频课程平台"
+  },
+  {
+    "id": 45,
+    "title": "网易公开课",
+    "url": "https://open.163.com",
+    "category": "学习资源",
+    "description": "含国内外名校公开课视频及 TED 演讲"
+  },
+  {
+    "id": 46,
+    "title": "哔哩哔哩",
+    "url": "https://www.bilibili.com",
+    "category": "学习资源",
+    "description": "中文互联网最大学习视频平台"
+  },
+  {
+    "id": 47,
+    "title": "ZJU-ICICLES（浙大课程资料）",
+    "url": "https://qsctech.github.io/zju-icicles",
+    "category": "学习资源",
+    "description": "浙江大学课程资料共享"
+  },
+  {
+    "id": 48,
+    "title": "导航站 ilxdh",
+    "url": "http://ilxdh.com",
+    "category": "导航站",
+    "description": "各种网站集结的导航网站"
+  },
+  {
+    "id": 49,
+    "title": "虫部落",
+    "url": "https://search.chongbuluo.com",
+    "category": "导航站",
+    "description": "聚合搜索平台"
+  },
+  {
+    "id": 50,
+    "title": "码力全开",
+    "url": "https://design.maliquankai.com",
+    "category": "导航站",
+    "description": "设计资源导航"
+  },
+  {
+    "id": 51,
+    "title": "优设导航",
+    "url": "https://hao.uisdc.com",
+    "category": "导航站",
+    "description": "设计师专用导航网站"
+  },
+  {
+    "id": 52,
+    "title": "HiPPTer",
+    "url": "https://www.hippter.com",
+    "category": "导航站",
+    "description": "PPT 资源导航网站"
+  },
+  {
+    "id": 53,
+    "title": "腾讯设计导航",
+    "url": "https://idesign.qq.com/#!index/feed",
+    "category": "导航站",
+    "description": "腾讯出品设计订阅导航"
+  },
+  {
+    "id": 54,
+    "title": "清工具",
+    "url": "https://qinggongju.com",
+    "category": "导航站",
+    "description": "综合工具导航站"
+  },
+  {
+    "id": 55,
+    "title": "030buy 代购",
+    "url": "https://www.030buy.net",
+    "category": "海外代购",
+    "description": "海外商品代购平台"
+  },
+  {
+    "id": 56,
+    "title": "Masadora 代购",
+    "url": "https://www.masadora.net",
+    "category": "海外代购",
+    "description": "海外代购服务"
+  },
+  {
+    "id": 57,
+    "title": "2poi 代购",
+    "url": "https://2poi.jp",
+    "category": "海外代购",
+    "description": "日本商品海外代购"
+  },
+  {
+    "id": 58,
+    "title": "Iconfont 阿里图标库",
+    "url": "https://www.iconfont.cn",
+    "category": "设计",
+    "description": "阿里巴巴矢量图标下载，支持 PPT 使用"
+  },
+  {
+    "id": 59,
+    "title": "Adobe Color",
+    "url": "https://color.adobe.com/zh/create/color-wheel",
+    "category": "设计",
+    "description": "Adobe 配色方案与色轮工具"
+  },
+  {
+    "id": 60,
+    "title": "Logosc 智能 Logo",
+    "url": "https://www.logosc.cn",
+    "category": "设计",
+    "description": "智能生成 Logo，只需名称和介绍"
+  },
+  {
+    "id": 61,
+    "title": "Lordicon 动态图标库",
+    "url": "https://lordicon.com",
+    "category": "设计",
+    "description": "9000+ 在线开源动态图标库，支持多格式下载"
+  },
+  {
+    "id": 62,
+    "title": "Pixabay",
+    "url": "https://pixabay.com/zh",
+    "category": "设计素材",
+    "description": "免费图片视频矢量图素材"
+  },
+  {
+    "id": 63,
+    "title": "Pexels",
+    "url": "https://www.pexels.com/zh-cn",
+    "category": "设计素材",
+    "description": "高质量图片视频免费下载，无需登录"
+  },
+  {
+    "id": 64,
+    "title": "Unsplash",
+    "url": "https://unsplash.com",
+    "category": "设计素材",
+    "description": "摄影壁纸高质量图片"
+  },
+  {
+    "id": 65,
+    "title": "Videvo",
+    "url": "https://www.videvo.net",
+    "category": "设计素材",
+    "description": "精品视频图片音效素材"
+  },
+  {
+    "id": 66,
+    "title": "Videezy",
+    "url": "https://www.videezy.com",
+    "category": "设计素材",
+    "description": "免费视频素材下载"
+  },
+  {
+    "id": 67,
+    "title": "Mixkit",
+    "url": "https://mixkit.co",
+    "category": "设计素材",
+    "description": "设计用视频音效素材"
+  },
+  {
+    "id": 68,
+    "title": "Freepik",
+    "url": "https://www.freepik.com",
+    "category": "设计素材",
+    "description": "图片矢量图及 PSD 素材"
+  },
+  {
+    "id": 69,
+    "title": "Wallhaven 壁纸",
+    "url": "https://wallhaven.cc",
+    "category": "设计素材",
+    "description": "宝藏壁纸网站"
+  },
+  {
+    "id": 70,
+    "title": "unDraw",
+    "url": "https://undraw.co/illustrations",
+    "category": "设计素材",
+    "description": "免费 SVG 插图图标"
+  },
+  {
+    "id": 71,
+    "title": "Flaticon",
+    "url": "https://www.flaticon.com",
+    "category": "设计素材",
+    "description": "静态图标下载"
+  },
+  {
+    "id": 72,
+    "title": "Icons8",
+    "url": "https://icons8.com",
+    "category": "设计素材",
+    "description": "图标图片及音乐素材设计"
+  },
+  {
+    "id": 73,
+    "title": "PPT 模板 ppthui",
+    "url": "https://www.ppthui.com",
+    "category": "设计素材",
+    "description": "PPT 模板下载"
+  },
+  {
+    "id": 74,
+    "title": "Pexels（视频）",
+    "url": "https://www.pexels.com",
+    "category": "视频素材",
+    "description": "免费 4K 视频素材，无需登录下载"
+  },
+  {
+    "id": 75,
+    "title": "Storyblocks",
+    "url": "https://www.storyblocks.com",
+    "category": "视频素材",
+    "description": "图片视频素材及免版权音乐"
+  },
+  {
+    "id": 76,
+    "title": "Coverr",
+    "url": "http://www.coverr.co",
+    "category": "视频素材",
+    "description": "免费视频素材，无需登录"
+  },
+  {
+    "id": 77,
+    "title": "新CG儿",
+    "url": "https://www.newcger.com",
+    "category": "视频素材",
+    "description": "免费 AE 模板和视频素材，无需注册"
+  },
+  {
+    "id": 78,
+    "title": "Squoosh",
+    "url": "https://squoosh.app",
+    "category": "图片工具",
+    "description": "谷歌旗下在线图片压缩工具"
+  },
+  {
+    "id": 79,
+    "title": "TinyPNG",
+    "url": "https://tinify.cn",
+    "category": "图片工具",
+    "description": "全球知名图片压缩，算法优秀"
+  },
+  {
+    "id": 80,
+    "title": "docsmall",
+    "url": "https://docsmall.com/image-compress",
+    "category": "图片工具",
+    "description": "在线图片压缩，最多 30 张"
+  },
+  {
+    "id": 81,
+    "title": "ezgif GIF 压缩",
+    "url": "https://ezgif.com/optimize",
+    "category": "图片工具",
+    "description": "在线 GIF 图片压缩优化"
+  },
+  {
+    "id": 82,
+    "title": "waifu2x",
+    "url": "http://waifu2x.udp.jp",
+    "category": "图片工具",
+    "description": "无损 2 倍放大图片"
+  },
+  {
+    "id": 83,
+    "title": "Remove.bg",
+    "url": "https://www.remove.bg/zh",
+    "category": "图片工具",
+    "description": "AI 智能抠图"
+  },
+  {
+    "id": 84,
+    "title": "以图搜图 iqdb",
+    "url": "http://iqdb.org",
+    "category": "图片工具",
+    "description": "以图搜图，支持多个来源"
+  },
+  {
+    "id": 85,
+    "title": "SauceNAO",
+    "url": "https://saucenao.com",
+    "category": "图片工具",
+    "description": "以图搜图，适合二次元图片"
+  },
+  {
+    "id": 86,
+    "title": "moresound 音乐搜索",
+    "url": "https://moresound.tk/music",
+    "category": "音乐",
+    "description": "国内主流音乐平台搜索下载"
+  },
+  {
+    "id": 87,
+    "title": "biu.moe 动漫音乐",
+    "url": "https://biu.moe/#/Index/home",
+    "category": "音乐",
+    "description": "较为齐全的动漫音乐，在线可听"
+  },
+  {
+    "id": 88,
+    "title": "ACG 音乐 acgjc",
+    "url": "http://www.acgjc.com",
+    "category": "音乐",
+    "description": "动漫音乐网盘下载"
+  },
+  {
+    "id": 89,
+    "title": "uta-net 日本歌词",
+    "url": "https://www.uta-net.com",
+    "category": "音乐",
+    "description": "日本歌曲歌词查询"
+  },
+  {
+    "id": 90,
+    "title": "freepd 音乐素材",
+    "url": "https://freepd.com",
+    "category": "音乐",
+    "description": "免费音乐素材"
+  },
+  {
+    "id": 91,
+    "title": "freesound 音效",
+    "url": "https://freesound.org",
+    "category": "音乐",
+    "description": "免费音效素材库"
+  },
+  {
+    "id": 92,
+    "title": "Tunefind 原声查找",
+    "url": "https://www.tunefind.com",
+    "category": "音乐",
+    "description": "寻找电影游戏美剧原声"
+  },
+  {
+    "id": 93,
+    "title": "角川漫画 Comic Walker",
+    "url": "https://comic-walker.com",
+    "category": "娱乐",
+    "description": "角川官方漫画在线阅读"
+  },
+  {
+    "id": 94,
+    "title": "手机博物馆",
+    "url": "https://www.mobilephonemuseum.com",
+    "category": "娱乐",
+    "description": "手机博物馆，历史手机收藏"
+  },
+  {
+    "id": 95,
+    "title": "世界名画博物馆 Gallerix",
+    "url": "https://gallerix.asia",
+    "category": "娱乐",
+    "description": "世界名画在线欣赏"
+  },
+  {
+    "id": 96,
+    "title": "纪妖",
+    "url": "https://cbaigui.com/page/1",
+    "category": "娱乐",
+    "description": "中国传统妖怪百科"
+  },
+  {
+    "id": 97,
+    "title": "Google 快速涂鸦",
+    "url": "https://quickdraw.withgoogle.com",
+    "category": "娱乐",
+    "description": "Google 快速涂鸦 AI 猜画"
+  },
+  {
+    "id": 98,
+    "title": "Pixilart 像素艺术",
+    "url": "https://www.pixilart.com",
+    "category": "娱乐",
+    "description": "在线像素画创作"
+  },
+  {
+    "id": 99,
+    "title": "Trace.moe 动漫识别",
+    "url": "https://trace.moe",
+    "category": "娱乐",
+    "description": "以图搜动漫来源"
+  },
+  {
+    "id": 100,
+    "title": "人生统计 Neal.fun",
+    "url": "https://neal.fun/life-stats",
+    "category": "娱乐",
+    "description": "有趣的人生数据统计可视化"
+  },
+  {
+    "id": 101,
+    "title": "故宫收藏总目",
+    "url": "https://zm-digicol.dpm.org.cn",
+    "category": "娱乐",
+    "description": "故宫博物院数字文物库"
+  },
+  {
+    "id": 102,
+    "title": "帮小忙工具箱",
+    "url": "https://tool.browser.qq.com",
+    "category": "在线工具",
+    "description": "腾讯 QQ 浏览器 130+ 功能工具箱"
+  },
+  {
+    "id": 103,
+    "title": "ProcessOn 流程图",
+    "url": "https://www.processon.com",
+    "category": "在线工具",
+    "description": "制作流程图、思维导图、树状图"
+  },
+  {
+    "id": 104,
+    "title": "LaTeX 公式编辑器",
+    "url": "https://latex.codecogs.com/eqneditor/editor.php",
+    "category": "在线工具",
+    "description": "在线 LaTeX 数学公式编辑"
+  },
+  {
+    "id": 105,
+    "title": "NCM 转 MP3",
+    "url": "https://tool.ixarea.com/music/index.html",
+    "category": "在线工具",
+    "description": "网易云 NCM 格式转 MP3"
+  },
+  {
+    "id": 106,
+    "title": "feed43 RSS 制作",
+    "url": "https://feed43.com",
+    "category": "在线工具",
+    "description": "将任意网页转为 RSS 订阅源"
+  },
+  {
+    "id": 107,
+    "title": "tool.lu 在线工具",
+    "url": "https://tool.lu",
+    "category": "在线工具",
+    "description": "什么都有的在线工具箱"
+  },
+  {
+    "id": 108,
+    "title": "123apps",
+    "url": "https://123apps.com",
+    "category": "在线工具",
+    "description": "多功能在线工具集合"
+  },
+  {
+    "id": 109,
+    "title": "DeepL 翻译",
+    "url": "https://www.deepl.com/translator",
+    "category": "在线工具",
+    "description": "AI 高质量翻译工具"
+  },
+  {
+    "id": 110,
+    "title": "今日热榜",
+    "url": "https://tophub.today",
+    "category": "在线工具",
+    "description": "各平台热榜聚合"
+  },
+  {
+    "id": 111,
+    "title": "Windy 天气地图",
+    "url": "https://www.windy.com",
+    "category": "在线工具",
+    "description": "天气地图动态可视化"
+  },
+  {
+    "id": 112,
+    "title": "Zoom.earth 卫星图像",
+    "url": "https://zoom.earth",
+    "category": "在线工具",
+    "description": "地球卫星实时图像"
+  },
+  {
+    "id": 113,
+    "title": "虫部落（资源聚合）",
+    "url": "https://search.chongbuluo.com",
+    "category": "资源聚合",
+    "description": "聚合搜索平台"
+  },
+  {
+    "id": 114,
+    "title": "书享家",
+    "url": "http://shuxiangjia.cn",
+    "category": "资源聚合",
+    "description": "电子书资源导航"
+  },
+  {
+    "id": 115,
+    "title": "面包树",
+    "url": "https://mianbaoshu.cc",
+    "category": "资源聚合",
+    "description": "优质网盘资源网站"
+  },
+  {
+    "id": 116,
+    "title": "Wallhaven（资源）",
+    "url": "https://wallhaven.cc",
+    "category": "资源聚合",
+    "description": "宝藏壁纸网站"
+  },
+  {
+    "id": 117,
+    "title": "AirPano 云旅游",
+    "url": "https://www.airpano.org.cn",
+    "category": "资源聚合",
+    "description": "全球云旅游、全景摄影"
+  },
+  {
+    "id": 118,
+    "title": "Civitai",
+    "url": "https://civitai.com",
+    "category": "AI工具",
+    "description": "Stable Diffusion 模型社区"
+  },
+  {
+    "id": 119,
+    "title": "AIDesign 腾讯 Logo",
+    "url": "https://ailogo.qq.com/guide/brandname",
+    "category": "AI工具",
+    "description": "AI 创建 Logo"
+  },
+  {
+    "id": 120,
+    "title": "Vocal Remover",
+    "url": "https://vocalremover.org/ch",
+    "category": "AI工具",
+    "description": "AI 音频分离，提取伴奏"
+  },
+  {
+    "id": 121,
+    "title": "Magic Eraser",
+    "url": "https://www.magiceraser.io",
+    "category": "AI工具",
+    "description": "AI 图片橡皮擦，智能抹除物体"
+  },
+  {
+    "id": 122,
+    "title": "Email Helper",
+    "url": "https://email-helper.vercel.app",
+    "category": "AI工具",
+    "description": "AI 商务邮件生成器"
+  },
+  {
+    "id": 123,
+    "title": "OpenRouter",
+    "url": "https://openrouter.ai",
+    "category": "AI工具",
+    "description": "多模型 AI API 路由平台"
+  },
+  {
+    "id": 124,
+    "title": "沃卡 AI",
+    "url": "https://www.wokaai.com",
+    "category": "AI工具",
+    "description": "普惠人工智能平台"
+  },
+  {
+    "id": 125,
+    "title": "Artbreeder AI 图片融合",
+    "url": "https://www.artbreeder.com",
+    "category": "AI工具",
+    "description": "AI 图片融合生成"
+  },
+  {
+    "id": 126,
+    "title": "Petalica Paint AI 上色",
+    "url": "https://petalica-paint.pixiv.dev/index_zh.html",
+    "category": "AI工具",
+    "description": "AI 线稿自动上色"
+  },
+  {
+    "id": 127,
+    "title": "Pixiv",
+    "url": "https://www.pixiv.net",
+    "category": "设计素材",
+    "description": "知名日本插画网"
+  },
+  {
+    "id": 128,
+    "title": "Sketchfab 3D 模型",
+    "url": "https://sketchfab.com",
+    "category": "设计素材",
+    "description": "3D 模型买卖平台"
+  },
+  {
+    "id": 129,
+    "title": "Colorhunt 配色",
+    "url": "https://colorhunt.co",
+    "category": "设计",
+    "description": "找好看的配色方案"
+  },
+  {
+    "id": 130,
+    "title": "Greasyfork 油猴脚本",
+    "url": "https://greasyfork.org/zh-CN",
+    "category": "在线工具",
+    "description": "油猴脚本搜集与下载"
+  }
+]
