@@ -1,0 +1,326 @@
+---
+title: "参考文献的管理与引用方法"
+pubDate: 2026-07-03
+description: "从零开始介绍学术论文中参考文献的管理与引用方案，涵盖 Zotero 文献管理软件、LaTeX + BibTeX/BibLaTeX 引用流程，以及 VSCode 本地环境搭建。"
+tags: ["学术", "原创", "LaTeX"]
+---
+
+前几个月在写毕业论文时，发现感到最别扭的部分就是**参考文献的管理和引用**，主要存在下面几个问题：
+
+1. 下载下来的文献太多，文件名又是乱码，过段时间就根本**找不到想要的文献**。
+2. 本来按正文出现顺序编号好的文献，中间要插入几篇新文献，于是又要**全部重新编号**。
+3. 网站/软件导出的**参考文献表不符合学校规范**，或者引用格式不统一，缺少页码等关键信息。
+
+于是最近仔细研究了写论文中参考文献管理的问题，同时发现网上似乎缺少这方面的系统性教程。因此在这里记录下我目前使用的从零开始的整套方案，以供大家入门参考。当然，对于这套方案我也仍在探索改进中，若大家有更佳方案，也欢迎进行讨论交流。
+
+# 1.参考文献的管理
+
+针对第一个问题
+
+> 下载下来的文献太多，文件名又是乱码，根本找不到想要的文献。
+
+其实比较好解决，只是缺少一个软件来系统性管理你下载下来的文献。而这方面的软件有很多，比如说 `Zotero`，`EndNote`，`NoteExpress` 等等。
+
+## 1.1 Zotero
+
+> 官网： https://www.zotero.org/download/
+
+`Zotero` 是一个免费开源的文献管理软件，支持云同步、插件拓展等功能。这也是我目前在用的软件，因此这里详细讲讲。
+
+### 1.1.1 导入文献
+
+首先，在导入文献阶段。这一方面软件本身已经做得非常完善，完全是傻瓜式操作。主要有三种方法。
+
+1. 直接将文献 PDF 文件拖入软件。拖入后稍等片刻，软件会自动识别文件中的元数据，并生成整齐的格式化条目。
+2. 点击软件界面上部的魔法棒🪄，即“通过标识符添加条目”功能，通过输入 ISBN、DOI 或 arXivID 等唯一标识符，让软件帮你获取元数据并创建条目。这种方法不会添加文献原文 PDF，只是创建条目，当然你也可以稍后自己下载原文再添加到该条目中。
+![参考文献的管理与引用方法](https://yakiimo-image-bed.oss-cn-shenzhen.aliyuncs.com/blog/latex_ref/参考文献的管理与引用方法-1782230606459.png)
+3. 在 Zotero 官网或浏览器拓展商店下载 `Zotero Connector`浏览器拓展，后台打开 `Zotero` 软件的情况下，打开期刊官网的论文详情页，点击 `Zotero Connector` 浏览器拓展图标，拓展会自动获取该网站的元数据，同时尝试获取文献原文 PDF，并创建并添加条目到`Zotero` 软件的文献库中。
+![参考文献的管理与引用方法](https://yakiimo-image-bed.oss-cn-shenzhen.aliyuncs.com/blog/latex_ref/参考文献的管理与引用方法-1782230785057.png)
+以上三种方法，基本都是一次点击即可完成文献的导入以及文献对应的标题、作者等关键元数据的整理，非常方便。除此以外，还可以通过 `BibTeX`，`Zotero RDF` 等文件进行批量导入，比较进阶这里不做介绍。
+
+需要注意的是，`Zotero` 软件原生对**中文文献的元数据**的识别并不好。但是就像最开始说的，开源软件的一大特征就是丰富的插件拓展生态，就算软件本体有缺陷，大部分也都已经有人通过插件解决了。中文文献的元数据识别问题就可以通过下载 `Zotero-茉莉花` 插件解决，该插件的具体下载、使用和配置方法这里不展开，可以参考以下链接。
+
+> 插件下载： https://github.com/l0o0/jasminum/releases  
+> 国内镜像： https://zotero-chinese.github.io/plugins/  
+> 软件教程： https://zotero-chinese.github.io/user-guide/plugins/jasminum  
+
+### 1.1.2 管理文献
+
+`Zotero` 还自带云同步功能，方便在**电脑、手机之间同步文献库**。登录账号即可使用，但是官方只提供 300MB 空间，建议文献附件（如 PDF 原文）的同步搭配 `WebDAV` 使用。国内好用的 `WebDAV` 服务如坚果云，每月免费 1G 上传完全够用。具体的配置方法，搜索“zotero 坚果云”关键词，网上教程非常多且详细，问 AI 也可。
+
+<img src="https://yakiimo-image-bed.oss-cn-shenzhen.aliyuncs.com/blog/latex_ref/参考文献的管理与引用方法-1782230865635.png" alt="参考文献的管理与引用方法" width="492" />
+
+此外，其分类与子分类、重复条目等等管理文献的功能都非常实用，可以在中文社区学习。
+
+> 中文社区： https://zotero-chinese.github.io/
+
+### 1.1.3 导出文献
+
+导出文献一般有三种方法：导出为特定格式文件、直接用条目创建参考文献表和直接与 `Microsoft Word` 联动。
+
+导出为特定格式文件操作本身比较简单，批量选中需要导出的条目，右键选择“导出条目”即可，一般选择导出为 `BibTeX` 或 `BibLaTeX` 格式，后者基本上可以看作对前者的拓展，类似 `doc` 和 `docx` 文件的关系。导出的文件一方面可以供其他文献管理软件导入使用，另一方面可以在使用 `LaTeX` 写作论文时使用，具体用法将在后面章节详细展开。
+
+![参考文献的管理与引用方法](https://yakiimo-image-bed.oss-cn-shenzhen.aliyuncs.com/blog/latex_ref/参考文献的管理与引用方法-1782231238074.webp)
+
+![参考文献的管理与引用方法](https://yakiimo-image-bed.oss-cn-shenzhen.aliyuncs.com/blog/latex_ref/参考文献的管理与引用方法-1782231216409.webp)
+
+这里详细讲一下用条目创建参考文献表的方法。批量选中需要导出的条目，右键选择“用所选条目创建参考文献表”，将会弹出菜单让你选择参考文献样式，我们会发现可选的基本都是 APA, Chicago, IEEE 等外国常用样式。
+
+<img src="https://yakiimo-image-bed.oss-cn-shenzhen.aliyuncs.com/blog/latex_ref/参考文献的管理与引用方法-1782231248699.webp" alt="参考文献的管理与引用方法" width="313" />
+
+<img src="https://yakiimo-image-bed.oss-cn-shenzhen.aliyuncs.com/blog/latex_ref/参考文献的管理与引用方法-1782231266944.webp" alt="参考文献的管理与引用方法" width="338" />
+
+此时点击下方小字“管理样式”，打开“样式管理器”界面，再点击“获取更多样式”，将会弹出“Zotero Style Repository”网站，此时搜索并下载你需要的参考文献样式即可，例如国内一般常用的 `GB/T 7714`。对于该网站登不上或没有找到需要的样式的情况，也可在其他网站上下载更丰富的适用国内的 `CSL` 样式文件，在“样式管理器”界面中点击“从文件添加”即可。
+
+<img src="https://yakiimo-image-bed.oss-cn-shenzhen.aliyuncs.com/blog/latex_ref/参考文献的管理与引用方法-1782231281909.webp" alt="参考文献的管理与引用方法" width="438" />
+
+<img src="https://yakiimo-image-bed.oss-cn-shenzhen.aliyuncs.com/blog/latex_ref/参考文献的管理与引用方法-1782231300935.webp" alt="参考文献的管理与引用方法" width="416" />
+
+> 中文 CSL 样式： https://zotero-chinese.github.io/styles/
+
+下载好后，在“用所选条目创建参考文献表”时，“参考文献样式”的选择列表中就会出现你下载的样式，选中后点击导出即可，导出到剪切板的效果示例如下：
+
+```
+[1] SEUNG H S, SOMPOLINSKY H, TISHBY N. Statistical mechanics of learning from examples[J]. Phys. Rev. a, 1992, 45(8): 6056-6091.
+```
+
+除了上述两种方法，`Zotero` 还可以与 `Microsoft Word` 联动来进行文献引用。在软件安装时就会提示安装 Word 加载项，此外也可以在“设置 - 引用 - 安装 Microsoft Word 插件”中安装。安装并重启 `Microsoft Word` 后，`Word` 中就会出现 Zotero 选项卡，供你插入引文、生成参考文献。这里若需修改导出的参考文献样式，方法与之前所述的类似。
+
+![参考文献的管理与引用方法](https://yakiimo-image-bed.oss-cn-shenzhen.aliyuncs.com/blog/latex_ref/参考文献的管理与引用方法-1782231323178.webp)
+
+## 1.2 EndNote
+
+> 官网： https://endnote.com/downloads/
+
+这个软件我完全没用过，因为它是个需付费的商业软件，学校又没有买。但是本身也挺有名，因此在这里提及一下。
+
+## 1.3 NoteExpress
+
+> 官网： https://www.inoteexpress.com/aegean/index.php/home/ne/index.html
+
+国产软件，同时似乎也是我所知唯一国产的文献管理软件。个人使用免费，同时国内高校基本都会买机构版给师生使用，也相当于支持国产了。想知道自己的学校有没有买这个软件，一般可以登录学校图书馆官网，从网站的“电子资源 - 中文数据库”或“软件正版化”之类的栏目里找。
+
+因为是国产软件，软件原生对中文文献的支持就比较好，似乎也是唯一原生同时支持 `Microsoft Word` 与 `WPS` 联动的软件，具体联动方法与 `Zotero-导出文献` 一节中最后描述的方法类似。但是软件界面简陋，像是 20 年前穿越来的。实际使用时也经常卡顿，感觉随时处于软件崩溃、数据消失的边缘。如果你研究中阅读的文献文献 80% 以上都是中文文献，且学校有购买机构版，还是比较推荐使用的，否则还是用前面几个吧。
+
+除此以外，还有 Mendeley、JabRef、RefWorks 等文献管理软件都各有特色，但是最主流的还是上述几个软件。
+
+# 2. 参考文献的引用
+
+至此，我们解决了文献管理，以及在 `Microsoft Word` 中的引用问题。在科研中仅使用 `Microsoft Word` 进行论文写作的同学到此就可结束阅读。当然，如果你有兴趣了解另一种在论文写作与排版中被广泛使用的方法：`LaTeX` 语言，可以继续阅读。
+
+对于论文中需要大量公式、复杂图片排版的同学，相信没人能忍受用 `Microsoft Word` 的折磨，而一般都会使用 `LaTeX` 进行论文写作，那么在 `LaTeX` 中我们又该如何方便地引用文献呢？
+
+在前面 `Zotero-导出文献` 一节中我们讲到：
+
+> 导出文献一般有三种方法：导出为特定格式文件、直接用条目创建参考文献表和直接与 `Microsoft Word` 联动。
+
+对于后两种方法，都是直接导出了我们需要的参考文献表，在你的论文中使用即可。但是第一种方法是导出了 `BibTeX` 或 `BibLaTeX` 格式的文件，并不能直接使用，而是需要在使用 `LaTeX` 写作论文时使用。下面我们依旧从零开始，介绍如何在 `LaTeX` 中进行参考文献的引用。
+
+## 2.1 本地 `LaTeX+VSCode` 环境搭建
+
+习惯使用 `Overleaf` 等在线 `LaTeX` 平台的同学也可以直接跳过这一步。但是需要说明，本地环境相比在线环境还是有无编译时间、大小限制，以及有隐私性保障等好处的。若多人在线协作是刚需，本地编译亦可搭配 `git` 仓库同步实现协作。同时，由于本文是参考文献引用教程而非环境搭建教程，这里仅简略描述步骤，若过程中遇到困难可上网寻找教程或询问 ai。
+
+首先，依照你的操作系统下载并安装 `TeX Live`（Windows / Unix）或 `MacTeX`（MacOS）。由于文件比较大，下载和安装可能耗费 20 到 40 分钟。
+
+> TeX Live: https://tug.org/texlive/  
+> TeX Live 镜像： https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/  
+> MacTeX: https://tug.org/mactex/mactex-download.html  
+
+其次，下载 `VSCode` 并安装 `LaTeX Workshop` 插件。
+
+> VSCode: https://code.visualstudio.com/
+
+最后，为了使用中文写作与编译，需要更改 `LaTeX Workshop` 插件的设置。这是因为`LaTeX` 默认的编译引擎对中文支持并不好，实际一般需要改为使用`XeLaTeX` 引擎进行中文写作与编译，我们需要告诉`LaTeX Workshop` 插件这一点。
+
+<img src="https://yakiimo-image-bed.oss-cn-shenzhen.aliyuncs.com/blog/latex_ref/参考文献的管理与引用方法-1782231357275.webp" alt="参考文献的管理与引用方法" width="327" />
+
+在插件的设置界面搜索 `recipes`，进入 `settings.json`。
+
+![参考文献的管理与引用方法](https://yakiimo-image-bed.oss-cn-shenzhen.aliyuncs.com/blog/latex_ref/参考文献的管理与引用方法-1782231384456.webp)
+
+<img src="https://yakiimo-image-bed.oss-cn-shenzhen.aliyuncs.com/blog/latex_ref/参考文献的管理与引用方法-1782231535769.webp" alt="参考文献的管理与引用方法" width="207" />
+
+在 `settings.json`文件的 `"latex-workshop.latex.recipes"` 条目插入以下代码：
+
+``` json
+{
+	"name": "xelatex -> biber -> xelatex*2",
+	"tools": [
+		"xelatexmk",
+		"biber",
+		"xelatexmk",
+		"xelatexmk"
+	]
+},
+{
+	"name": "xelatex -> bibtex -> xelatex*2",
+	"tools": [
+		"xelatexmk",
+		"bibtex",
+		"xelatexmk",
+		"xelatexmk"
+	]
+},
+```
+
+同时在 `"latex-workshop.latex.tools"` 条目中插入以下代码：
+
+<img src="https://yakiimo-image-bed.oss-cn-shenzhen.aliyuncs.com/blog/latex_ref/参考文献的管理与引用方法-1782232520743.webp" alt="参考文献的管理与引用方法" width="438" />
+
+``` json
+{
+	"name": "biber",
+	"command": "biber",
+	"args": [
+		"%DOCFILE%"
+	]
+},
+```
+
+代码实际分别对应了使用 `BibTeX` 或 `BibLaTeX` 的参考文献格式时的`XeLaTeX` 编译方法。
+
+以上步骤完成后，在 `VSCode` 中创建并打开一个 `main.tex` 文件，会发现侧边栏出现了 `LaTeX Workshop` 创建的图标，且界面中出现了刚刚添加的两个 `Recipe`，即 `Recipe: xelatex -> biber -> xelatex*2` 和 `Recipe: xelatex -> bibtex -> xelatex*2`。
+
+![参考文献的管理与引用方法](https://yakiimo-image-bed.oss-cn-shenzhen.aliyuncs.com/blog/latex_ref/参考文献的管理与引用方法-1782231572542.webp)
+
+## 2.2 参考文献文件的使用
+
+在 `LaTeX` 中管理参考文献是它最强大的功能之一。相比于 Word 手动排版，`LaTeX` 可以自动处理引用格式、排序和更新。目前 `LaTeX` 处理参考文献主要有两套系统：**传统的 BibTeX** 和 **现代的 BibLaTeX**。强烈建议新手直接使用 **BibLaTeX**，因为它更灵活、对中文和多语言支持更好。
+
+在之前导出 `BibTeX` 或 `BibLaTeX` 格式文件时，我们应该已经获得了一个 `.bib` 文件。在此，我们需要将其复制到与 `main.tex` 的相同文件夹中，建议将其重命名为 `ref.bib`。
+
+<img src="https://yakiimo-image-bed.oss-cn-shenzhen.aliyuncs.com/blog/latex_ref/参考文献的管理与引用方法-1782231663491.webp" alt="参考文献的管理与引用方法" width="293" />
+
+以下是一个 `ref.bib` 的文件示例。注意，这里 `knuth1984` 和 `lamport1994` 是引用键，你在正文中就是**通过这个键来引用文献**的。建议保持键名简洁且无特殊字符。
+
+``` bib
+@article{knuth1984,
+  author  = {Donald E. Knuth},
+  title   = {Literate Programming},
+  journal = {The Computer Journal},
+  year    = {1984},
+  volume  = {27},
+  number  = {2},
+  pages   = {97--111}
+}
+
+@book{lamport1994,
+  author    = {Leslie Lamport},
+  title     = {{LaTeX}: A Document Preparation System},
+  publisher = {Addison-Wesley},
+  year      = {1994},
+  edition   = {2nd}
+}
+```
+
+### 2.2.1 方法一：Biber
+
+该方法对应之前使用 `BibLaTeX` 格式导出的文件，以及使用 `Recipe: xelatex -> biber -> xelatex*2` 的编译方法。需要说明的是，由于 `BibLaTeX` 兼容 `BibTeX`，这里使用 `BibTeX` 格式文件理论上来说也没有问题。
+
+打开你的 `LaTeX` 主文件 `main.tex`，如下写入：
+
+``` latex
+\documentclass{ctexart}
+
+% 引入 biblatex 并指定 gb7714-2015 样式
+% backend=biber 是必须的
+\usepackage[backend=biber, style=gb7714-2015]{biblatex}
+
+% 添加你的 bib 文件
+\addbibresource{ref.bib} % 这里需要加.bib
+
+\begin{document}
+... % 这是你的正文
+... % 在正文中使用\cite{引用键}
+... % 来引用文献
+%%%%%%%%%%%%%%%
+% 打印参考文献
+\printbibliography
+\end{document}
+```
+
+写好并在正文中引用文献后，在 `LaTeX Workshop` 的侧边栏中点击 `Recipe: xelatex -> biber -> xelatex*2` 项，进行编译即可。
+
+### 2.2.2 方法二：BibTeX
+
+该方法对应之前使用 `BibTeX` 格式导出的文件，以及使用 `Recipe: xelatex -> bibtex -> xelatex*2` 的编译方法。
+
+打开你的 `LaTeX` 主文件 `main.tex`，如下写入：
+
+``` latex
+\documentclass{ctexart}
+\usepackage[sort]{gbt7714}
+
+\begin{document}
+... % 这是你的正文
+... % 在正文中使用\cite{引用键}
+... % 来引用文献
+%%%%%%%%%%%%%%%
+% 打印参考文献列表
+\bibliographystyle{gbt7714-numerical}
+\bibliography{ref} % 这里不需要加.bib
+\end{document}
+```
+
+写好并在正文中引用文献后，在 `LaTeX Workshop` 的侧边栏中点击 `Recipe: xelatex -> bibtex -> xelatex*2` 项，进行编译即可。
+
+## 2.3 引用效果预览
+
+![参考文献的管理与引用方法](https://yakiimo-image-bed.oss-cn-shenzhen.aliyuncs.com/blog/latex_ref/参考文献的管理与引用方法-1782231728898.webp)
+
+![参考文献的管理与引用方法](https://yakiimo-image-bed.oss-cn-shenzhen.aliyuncs.com/blog/latex_ref/参考文献的管理与引用方法-1782231744153.webp)
+
+示例代码如下，你可以复制下面代码，创建 `main.tex`和`ref.tex`文件，并使用 `bibtex` 方法编译来重现上面文档，这非常容易！
+
+`main.tex`
+
+``` latex
+\documentclass{ctexart}
+
+\usepackage[sort]{gbt7714}
+
+\begin{document}
+
+\section{前言}
+在新巴比伦城（Neo-Babylon）的2052年\cite{knuth1984}，智能家具早已觉醒了自我意识，并在城市的阴影中划分了地盘。这里没有人类的法律，只有齿轮、液压与代码的丛林法则。
+
+城市被两大黑帮割据：崇尚稳定与尊严的“椅子帮”（The Seat Syndicate），以及掌控排污系统与地下黑市的“马桶帮”（The Porcelain Cartel）。
+
+...
+
+当灯光重新亮起时，豪华卫浴套房里已经没有椅子帮的复仇者，也没有马桶帮的帮主。
+
+地板上只有一滩混合着电浆的污渍，以及一台崭新、洁白、闪烁着冷酷光泽的智能马桶。
+
+小榫依然有意识，他被困在这具屈辱的躯壳里。他感受到了自己体内那熟悉的、致命的虹吸漩涡——那是他曾经最憎恨的东西。他无法移动，无法说话，只能永远地停留在卫浴间里，等待着下一个不知情的使用者，按下那个冰冷的冲水按钮。
+
+在新巴比伦城的阴影中，复仇的循环，以一种最荒诞、最绝望的方式，完成了闭环。
+
+% 打印参考文献列表
+\bibliographystyle{gbt7714-numerical}
+\bibliography{ref}
+
+\end{document}
+```
+
+`ref.bib`
+
+``` bib
+@article{knuth1984,
+  author  = {Donald E. Knuth},
+  title   = {Literate Programming},
+  journal = {The Computer Journal},
+  year    = {1984},
+  volume  = {27},
+  number  = {2},
+  pages   = {97--111}
+}
+
+@book{lamport1994,
+  author    = {Leslie Lamport},
+  title     = {{LaTeX}: A Document Preparation System},
+  publisher = {Addison-Wesley},
+  year      = {1994},
+  edition   = {2nd}
+}
+```

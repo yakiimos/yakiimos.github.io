@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import sitesData from '../data/sites.json';
 
-// 类型定义
 interface Site {
   id: number;
   title: string;
@@ -13,7 +12,6 @@ interface Site {
 
 const sites = sitesData as Site[];
 
-// 按分类分组
 const categoryMap = new Map<string, Site[]>();
 for (const site of sites) {
   if (!categoryMap.has(site.category)) {
@@ -22,12 +20,10 @@ for (const site of sites) {
   categoryMap.get(site.category)!.push(site);
 }
 
-// 将 Map 转为有序数组（按网站数量降序）
 const categories = [...categoryMap.entries()]
   .sort((a, b) => b[1].length - a[1].length)
   .map(([name, sites]) => ({ name, sites }));
 
-// 分类图标映射
 const categoryIcons: Record<string, string> = {
   'AI工具': '🤖',
   '设计素材': '🎨',
@@ -52,7 +48,6 @@ function getCategoryIcon(category: string): string {
   return categoryIcons[category] ?? '🌐';
 }
 
-// 从 URL 获取 favicon
 function getFaviconUrl(url: string): string {
   try {
     const domain = new URL(url).hostname;
@@ -66,102 +61,96 @@ const totalSites = sites.length;
 const totalCategories = categories.length;
 ---
 
-<BaseLayout title="网址导航 - My Blog" description="精心收录的优质网站导航，涵盖 AI 工具、设计素材、学习资源等多个分类">
+<BaseLayout title="网址导航 - 墨 Blog" description="精心收录的优质网站导航">
   <!-- 页面头部 -->
-  <div class="bg-gradient-to-br from-indigo-600 to-purple-700 text-white py-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h1 class="text-3xl sm:text-4xl font-bold mb-3">🧭 网址导航</h1>
-      <p class="text-indigo-100 text-lg mb-6">
-        精心收录 <strong class="text-white">{totalSites}</strong> 个优质网站，共 <strong class="text-white">{totalCategories}</strong> 个分类
+  <div class="bg-brand text-ivory py-10 sm:py-14">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8">
+      <h1 class="text-2xl sm:text-3xl font-medium mb-2">网址导航</h1>
+      <p class="text-sm opacity-75 mb-6">
+        收录 <strong class="opacity-100">{totalSites}</strong> 个优质网站，共 <strong class="opacity-100">{totalCategories}</strong> 个分类
       </p>
 
-      <!-- 搜索框 -->
-      <div class="relative max-w-xl">
+      <div class="relative max-w-lg">
         <input
           type="text"
           id="search-input"
           placeholder="搜索网站名称或描述..."
-          class="w-full bg-white/10 backdrop-blur border border-white/30 text-white placeholder-indigo-200 rounded-xl px-5 py-3 pr-12 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/50 transition-all"
+          class="w-full bg-ivory/10 backdrop-blur border border-ivory/20 text-ivory placeholder-ivory/50 px-4 py-2.5 pr-10 text-sm focus:outline-none focus:border-ivory/40 transition-all"
         />
-        <svg class="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-indigo-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ivory/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
         </svg>
       </div>
     </div>
   </div>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <!-- 分类快速跳转 -->
-    <div class="flex flex-wrap gap-2 mb-10" id="category-nav">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 py-8">
+    <!-- 分类跳转 -->
+    <div class="flex flex-wrap gap-2 mb-8" id="category-nav">
       {categories.map(({ name, sites }) => (
         <a
           href={`#category-${name}`}
-          class="inline-flex items-center gap-1.5 bg-white border border-gray-200 text-gray-700 px-3 py-1.5 rounded-lg text-sm font-medium hover:bg-indigo-50 hover:border-indigo-200 hover:text-indigo-600 transition-all category-tag"
+          class="inline-flex items-center gap-1.5 bg-ivory border border-border text-dark-warm px-3 py-1.5 text-sm font-medium hover:bg-brand-tint hover:border-brand/20 hover:text-brand transition-all category-tag"
           data-category={name}
         >
           <span>{getCategoryIcon(name)}</span>
           <span>{name}</span>
-          <span class="bg-gray-100 text-gray-500 text-xs px-1.5 py-0.5 rounded-full">{sites.length}</span>
+          <span class="bg-warm-sand text-stone text-xs px-1.5 py-0.5">{sites.length}</span>
         </a>
       ))}
     </div>
 
-    <!-- 搜索结果提示 -->
-    <div id="search-status" class="hidden mb-6 text-sm text-gray-500">
-      找到 <span id="search-count" class="font-semibold text-indigo-600">0</span> 个结果
+    <!-- 搜索结果 -->
+    <div id="search-status" class="hidden mb-6 text-sm text-olive">
+      找到 <span id="search-count" class="font-medium text-brand">0</span> 个结果
     </div>
 
-    <!-- 网站分类列表 -->
-    <div id="sites-container" class="space-y-12">
+    <!-- 网站列表 -->
+    <div id="sites-container" class="space-y-10">
       {categories.map(({ name, sites }) => (
         <section id={`category-${name}`} class="category-section" data-category={name}>
-          <!-- 分类标题 -->
-          <div class="flex items-center gap-3 mb-5">
-            <span class="text-2xl">{getCategoryIcon(name)}</span>
-            <h2 class="text-xl font-bold text-gray-900">{name}</h2>
-            <span class="text-sm text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full">{sites.length} 个</span>
+          <div class="flex items-center gap-3 mb-4 border-b border-border-soft pb-2">
+            <span class="text-xl">{getCategoryIcon(name)}</span>
+            <h2 class="text-lg font-medium text-brand">{name}</h2>
+            <span class="text-xs text-stone bg-warm-sand px-2 py-0.5">{sites.length}</span>
           </div>
 
-          <!-- 网站卡片网格 -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 site-grid">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 site-grid">
             {sites.map((site) => (
               <a
                 href={site.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="site-card group flex items-start gap-3 bg-white border border-gray-200 rounded-xl p-4 hover:shadow-md hover:border-indigo-200 hover:bg-indigo-50/30 transition-all"
+                class="site-card group flex items-start gap-2.5 bg-ivory border border-border p-3.5 hover:shadow-md hover:border-brand/20 transition-all"
                 data-title={site.title.toLowerCase()}
                 data-description={site.description.toLowerCase()}
                 data-category={site.category}
               >
-                <!-- Favicon -->
-                <div class="flex-shrink-0 w-9 h-9 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div class="flex-shrink-0 w-8 h-8 bg-warm-sand flex items-center justify-center overflow-hidden">
                   <img
                     src={getFaviconUrl(site.url)}
                     alt={site.title}
-                    width="20"
-                    height="20"
-                    class="w-5 h-5 object-contain"
+                    width="18"
+                    height="18"
+                    class="w-4.5 h-4.5 object-contain"
                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
                     loading="lazy"
                   />
-                  <span class="hidden items-center justify-center text-sm font-bold text-indigo-500">
+                  <span class="hidden items-center justify-center text-xs font-medium text-brand">
                     {site.title.charAt(0)}
                   </span>
                 </div>
 
-                <!-- 内容 -->
                 <div class="flex-1 min-w-0">
-                  <h3 class="font-semibold text-gray-900 text-sm truncate group-hover:text-indigo-600 transition-colors">
+                  <h3 class="font-medium text-near-black text-sm truncate group-hover:text-brand transition-colors">
                     {site.title}
                   </h3>
-                  <p class="text-xs text-gray-500 mt-0.5 line-clamp-2 leading-relaxed">
+                  <p class="text-xs text-olive mt-0.5 line-clamp-2 leading-relaxed">
                     {site.description}
                   </p>
                 </div>
 
-                <!-- 外链图标 -->
-                <svg class="flex-shrink-0 w-4 h-4 text-gray-300 group-hover:text-indigo-400 transition-colors mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="flex-shrink-0 w-3.5 h-3.5 text-stone/40 group-hover:text-brand/40 transition-colors mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
               </a>
@@ -171,9 +160,7 @@ const totalCategories = categories.length;
       ))}
     </div>
 
-    <!-- 无结果提示 -->
-    <div id="no-results" class="hidden py-20 text-center text-gray-400">
-      <div class="text-5xl mb-4">🔍</div>
+    <div id="no-results" class="hidden py-20 text-center text-stone">
       <p class="text-lg">没有找到相关网站</p>
       <p class="text-sm mt-1">试试其他关键词</p>
     </div>
@@ -193,7 +180,6 @@ const totalCategories = categories.length;
     const q = query.trim().toLowerCase();
 
     if (!q) {
-      // 清空搜索，恢复全部显示
       categorySections.forEach((section) => (section.style.display = ''));
       siteCards.forEach((card) => (card.style.display = ''));
       searchStatus.classList.add('hidden');
@@ -204,7 +190,6 @@ const totalCategories = categories.length;
 
     let visibleCount = 0;
 
-    // 过滤每个卡片
     siteCards.forEach((card) => {
       const title = card.dataset.title ?? '';
       const desc = card.dataset.description ?? '';
@@ -217,13 +202,11 @@ const totalCategories = categories.length;
       }
     });
 
-    // 隐藏没有可见卡片的分类
     categorySections.forEach((section) => {
       const visibleCards = section.querySelectorAll<HTMLAnchorElement>('.site-card:not([style*="display: none"])');
       section.style.display = visibleCards.length > 0 ? '' : 'none';
     });
 
-    // 更新计数
     searchCount.textContent = String(visibleCount);
     searchStatus.classList.remove('hidden');
 
@@ -240,7 +223,6 @@ const totalCategories = categories.length;
     performSearch((e.target as HTMLInputElement).value);
   });
 
-  // 支持回车清空搜索
   searchInput.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       searchInput.value = '';

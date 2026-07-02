@@ -5,52 +5,72 @@ import { getCollection } from 'astro:content';
 const posts = await getCollection('blog', ({ data }) => !data.draft);
 posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-// 提取所有标签
-const allTags = [...new Set(posts.flatMap((p) => p.data.tags))].sort();
+const tagCounts: Record<string, number> = {};
+posts.forEach((p) => p.data.tags.forEach((t: string) => {
+  tagCounts[t] = (tagCounts[t] || 0) + 1;
+}));
+const allTags = Object.keys(tagCounts).sort();
 ---
 
-<BaseLayout title="博客 - My Blog" description="所有博客文章列表">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <!-- 页头 -->
+<BaseLayout title="博客 - 墨 Blog" description="所有博客文章列表">
+  <div class="max-w-4xl mx-auto px-5 sm:px-8 py-12 sm:py-16">
     <header class="mb-10">
-      <h1 class="text-3xl font-bold text-gray-900 mb-2">博客</h1>
-      <p class="text-gray-500">共 {posts.length} 篇文章</p>
+      <h1 class="text-2xl font-medium text-brand mb-2">博客</h1>
+      <p class="text-sm text-stone">共 {posts.length} 篇文章</p>
     </header>
 
-    <!-- 标签过滤 -->
     {allTags.length > 0 && (
-      <div class="flex flex-wrap gap-2 mb-8">
+      <div class="flex flex-wrap gap-2 mb-8" id="tag-filters">
+        <button
+          class="tag-filter-btn active bg-brand text-ivory px-3 py-1 text-sm font-medium transition-colors"
+          data-tag="all"
+        >
+          全部
+        </button>
         {allTags.map((tag) => (
-          <span class="bg-indigo-50 text-indigo-600 px-3 py-1 rounded-full text-sm font-medium cursor-pointer hover:bg-indigo-100 transition-colors">
+          <button
+            class="tag-filter-btn bg-brand-tint text-brand px-3 py-1 text-sm font-medium transition-colors hover:bg-brand/15"
+            data-tag={tag}
+          >
             #{tag}
-          </span>
+            <span class="ml-1 text-xs opacity-60">{tagCounts[tag]}</span>
+          </button>
         ))}
       </div>
     )}
 
-    <!-- 文章列表 -->
-    <div class="space-y-6">
+    <div id="filter-status" class="hidden mb-4 text-sm text-olive">
+      筛选：<span id="filter-tag-name" class="font-medium text-brand"></span>
+      <span class="mx-1">&middot;</span>
+      <span id="filter-count" class="text-stone"></span>
+      <button id="clear-filter" class="ml-2 text-brand hover:text-brand-light underline">清除</button>
+    </div>
+
+    <div class="space-y-4" id="post-list">
       {posts.map((post) => (
-        <article class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-md hover:border-indigo-200 transition-all group">
+        <article
+          class="post-card bg-ivory border border-border p-6 hover:shadow-md hover:border-brand/20 transition-all group"
+          data-tags={post.data.tags.join(',')}
+        >
           <div class="flex items-start justify-between gap-4">
             <div class="flex-1 min-w-0">
               <div class="flex flex-wrap gap-1.5 mb-2">
                 {post.data.tags.map((tag: string) => (
-                  <span class="text-xs bg-indigo-50 text-indigo-600 px-2 py-0.5 rounded font-medium">
+                  <span class="text-xs bg-brand-tint text-brand px-2 py-0.5 font-medium">
                     #{tag}
                   </span>
                 ))}
               </div>
-              <h2 class="text-xl font-bold text-gray-900 group-hover:text-indigo-600 transition-colors mb-2">
+              <h2 class="text-lg font-medium text-near-black group-hover:text-brand transition-colors mb-2 leading-snug">
                 <a href={`/blog/${post.slug}`}>{post.data.title}</a>
               </h2>
               {post.data.description && (
-                <p class="text-gray-500 text-sm leading-relaxed line-clamp-2">
+                <p class="text-sm text-olive leading-relaxed line-clamp-2">
                   {post.data.description}
                 </p>
               )}
             </div>
-            <time class="text-xs text-gray-400 whitespace-nowrap mt-1">
+            <time class="text-xs text-stone whitespace-nowrap mt-1">
               {post.data.pubDate.toLocaleDateString('zh-CN', {
                 year: 'numeric',
                 month: '2-digit',
@@ -59,21 +79,93 @@ const allTags = [...new Set(posts.flatMap((p) => p.data.tags))].sort();
             </time>
           </div>
           <div class="mt-4">
-            <a
-              href={`/blog/${post.slug}`}
-              class="text-sm text-indigo-500 hover:text-indigo-700 font-medium"
-            >
-              阅读全文 →
+            <a href={`/blog/${post.slug}`} class="text-sm text-brand hover:text-brand-light font-medium">
+              阅读全文 &rarr;
             </a>
           </div>
         </article>
       ))}
     </div>
 
+    <div id="no-results" class="hidden text-center py-20 text-stone">
+      <p class="text-lg">该标签下暂无文章</p>
+    </div>
+
     {posts.length === 0 && (
-      <div class="text-center py-20 text-gray-400">
-        <p class="text-lg">还没有文章，快来写第一篇吧！</p>
+      <div class="text-center py-20 text-stone">
+        <p class="text-lg">还没有文章，快来写第一篇吧。</p>
       </div>
     )}
   </div>
+
+  <script>
+    (function () {
+      const buttons = document.querySelectorAll<HTMLButtonElement>('.tag-filter-btn');
+      const postCards = document.querySelectorAll<HTMLElement>('.post-card');
+      const filterStatus = document.getElementById('filter-status');
+      const filterTagName = document.getElementById('filter-tag-name');
+      const filterCount = document.getElementById('filter-count');
+      const clearFilter = document.getElementById('clear-filter');
+      const noResults = document.getElementById('no-results');
+      const totalPosts = postCards.length;
+
+      function setActiveTag(tag: string) {
+        buttons.forEach((btn) => {
+          const btnTag = btn.getAttribute('data-tag');
+          if (btnTag === tag) {
+            btn.classList.add('bg-brand', 'text-ivory');
+            btn.classList.remove('bg-brand-tint', 'text-brand', 'hover:bg-brand/15');
+          } else {
+            btn.classList.remove('bg-brand', 'text-ivory');
+            btn.classList.add('bg-brand-tint', 'text-brand', 'hover:bg-brand/15');
+          }
+        });
+
+        let visibleCount = 0;
+        postCards.forEach((card) => {
+          const cardTags = card.getAttribute('data-tags')?.split(',') || [];
+          const show = tag === 'all' || cardTags.includes(tag);
+          card.style.display = show ? '' : 'none';
+          if (show) visibleCount++;
+        });
+
+        if (tag === 'all') {
+          filterStatus?.classList.add('hidden');
+          noResults?.classList.add('hidden');
+        } else {
+          filterStatus?.classList.remove('hidden');
+          if (filterTagName) filterTagName.textContent = `#${tag}`;
+          if (filterCount) filterCount.textContent = `${visibleCount} / ${totalPosts} 篇`;
+          if (visibleCount === 0) {
+            noResults?.classList.remove('hidden');
+          } else {
+            noResults?.classList.add('hidden');
+          }
+        }
+
+        const url = new URL(window.location.href);
+        if (tag === 'all') {
+          url.searchParams.delete('tag');
+        } else {
+          url.searchParams.set('tag', tag);
+        }
+        window.history.replaceState({}, '', url.toString());
+      }
+
+      buttons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const tag = btn.getAttribute('data-tag') || 'all';
+          setActiveTag(tag);
+        });
+      });
+
+      clearFilter?.addEventListener('click', () => setActiveTag('all'));
+
+      const params = new URLSearchParams(window.location.search);
+      const urlTag = params.get('tag');
+      if (urlTag) {
+        setActiveTag(urlTag);
+      }
+    })();
+  </script>
 </BaseLayout>

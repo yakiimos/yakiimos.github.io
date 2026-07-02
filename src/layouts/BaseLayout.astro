@@ -1,5 +1,4 @@
 ---
-// 全局基础布局
 interface Props {
   title: string;
   description?: string;
@@ -14,35 +13,49 @@ const { title, description = "我的个人博客 - 分享技术与生活" } = As
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500&display=swap" rel="stylesheet">
     <title>{title}</title>
   </head>
-  <body class="bg-gray-50 text-gray-900 min-h-screen flex flex-col">
-    <!-- 顶部导航栏 -->
-    <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-16">
-          <a href="/" class="text-xl font-bold text-indigo-600 hover:text-indigo-700 transition-colors">
-            🚀 My Blog
+  <body class="bg-parchment text-near-black min-h-screen flex flex-col font-serif antialiased">
+
+    <!-- 顶部导航 -->
+    <header class="bg-ivory border-b border-border sticky top-0 z-50">
+      <div class="max-w-5xl mx-auto px-5 sm:px-8">
+        <div class="flex items-center justify-between h-14">
+          <a href="/" class="text-lg font-medium text-brand hover:text-brand-light transition-colors tracking-wide">
+            墨 · Blog
           </a>
-          <nav class="flex items-center gap-6">
-            <a href="/" class="text-sm font-medium text-gray-600 hover:text-indigo-600 transition-colors">首页</a>
-            <a href="/blog" class="text-sm font-medium text-gray-600 hover:text-indigo-600 transition-colors">博客</a>
-            <a href="/nav" class="text-sm font-medium text-gray-600 hover:text-indigo-600 transition-colors">网址导航</a>
+          <nav class="flex items-center gap-5 text-sm text-dark-warm">
+            <a href="/" class="hover:text-brand transition-colors">首页</a>
+            <a href="/blog" class="hover:text-brand transition-colors">博客</a>
+            <a href="/nav" class="hover:text-brand transition-colors">导航</a>
           </nav>
         </div>
       </div>
     </header>
 
-    <!-- 主内容区 -->
+    <!-- 主内容 -->
     <main class="flex-1">
       <slot />
     </main>
 
     <!-- 页脚 -->
-    <footer class="bg-white border-t border-gray-200 py-8 mt-16">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-500">
-        <p>Built with <a href="https://astro.build" class="text-indigo-500 hover:underline" target="_blank">Astro</a> + Tailwind CSS</p>
+    <footer class="border-t border-border py-10 mt-20">
+      <div class="max-w-5xl mx-auto px-5 sm:px-8 text-center text-sm text-stone">
+        <p>Built with <a href="https://astro.build" class="text-brand hover:underline" target="_blank">Astro</a> &middot; Designed with kami</p>
       </div>
     </footer>
   </body>
 </html>
+
+<style is:global>
+  html {
+    scroll-behavior: smooth;
+  }
+  ::selection {
+    background: #E4ECF5;
+    color: #1B365D;
+  }
+</style>
